@@ -11,14 +11,13 @@ terraform plan
 terraform apply
 ```
 ## Task 3 - Create storage bucket
-add modules in main.tf
+Add modules in main.tf
 ```
 module "storage" {
   source     = "./modules/storage"
 }   
-
 ```
-fill storage/storage.tf
+Fill storage/storage.tf
 ```
 resource "google_storage_bucket" "storage" {
   name          = "qwiklabs-gcp-01-ffdae0e6175c"
@@ -27,12 +26,12 @@ resource "google_storage_bucket" "storage" {
   uniform_bucket_level_access = true
 }
 ```
-run init and apply
+Initialize and apply
 ```
 terraform init
 terraform apply
 ```
-add remote backend in main.tf
+Add remote backend in main.tf
 ```
 terraform {
 backend "gcs" {
@@ -42,4 +41,8 @@ backend "gcs" {
 ....
 }
 
+```
+Initialize
+```
+terraform init
 ```
