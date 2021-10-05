@@ -11,7 +11,35 @@ terraform plan
 terraform apply
 ```
 ## Task 3 - Create storage bucket
-add modules
+add modules in main.tf
 ```
+module "storage" {
+  source     = "./modules/storage"
+}   
+
+```
+fill storage/storage.tf
+```
+resource "google_storage_bucket" "storage" {
+  name          = "qwiklabs-gcp-01-ffdae0e6175c"
+  location      = "US"
+  force_destroy = true
+  uniform_bucket_level_access = true
+}
+```
+run init and apply
+```
+terraform init
+terraform apply
+```
+add remote backend in main.tf
+```
+terraform {
+backend "gcs" {
+    bucket  = "qwiklabs-gcp-01-ffdae0e6175c"
+    prefix  = "terraform/state"
+    }
+....
+}
 
 ```
