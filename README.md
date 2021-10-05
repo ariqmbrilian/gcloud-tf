@@ -76,3 +76,39 @@ Apply
 ```
 terraform apply
 ```
+## Task 5 - Taint and destroy resources
+Taint tf-instance-3
+```
+terraform taint module.instances.google_compute_instance.tf-instance-3 
+```
+Plan and apply
+```
+terraform plan
+terraform apply
+```
+Remove following line
+```
+resource "google_compute_instance" "tf-instance-3" {
+  name         = "tf-instance-3"
+  machine_type = "n1-standard-2"
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+  network_interface {
+    network = "default"
+    access_config {
+    }
+  }
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+    EOT
+allow_stopping_for_update = true
+}
+
+```
+Apply changes
+```
+terraform apply
+```
