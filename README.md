@@ -46,3 +46,33 @@ Initialize
 ```
 terraform init
 ```
+## Task 4 - Modify and update infra
+navigate to modules/instances/instance.tf replace tf-instance-1 and tf-instance-2 to
+```
+machine_type = "n1-standard-2"
+```
+Add following line
+```
+resource "google_compute_instance" "tf-instance-3" {
+  name         = "tf-instance-3"
+  machine_type = "n1-standard-2"
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+  network_interface {
+    network = "default"
+    access_config {
+    }
+  }
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+    EOT
+allow_stopping_for_update = true
+}
+```
+Apply
+```
+terraform apply
+```
