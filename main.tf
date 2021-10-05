@@ -14,7 +14,5 @@ provider "google" {
 }
 
 module "instances" {
-
   source     = "./modules/instances"
-
 }
