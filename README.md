@@ -10,3 +10,8 @@ terraform import module.instances.google_compute_instance.tf-instance-1 qwiklabs
 terraform plan
 terraform apply
 ```
+## Task 3 - Create storage bucket
+add modules
+```
+
+```
