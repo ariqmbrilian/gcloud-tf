@@ -172,3 +172,7 @@ resource "google_compute_firewall" "tf-firewall" {
   source_ranges = ["0.0.0.0/0"]
 }
 ```
+Apply
+```
+terraform apply
+```
