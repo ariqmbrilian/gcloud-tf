@@ -5,8 +5,8 @@ terraform init
 ```
 ## Task 2 - Import terraform
 ```
-terraform import module.instances.google_compute_instance.tf-instance-1 qwiklabs-gcp-04-6301d462f01b/us-central1-a/tf-instance-1
-terraform import module.instances.google_compute_instance.tf-instance-1 qwiklabs-gcp-04-6301d462f01b/us-central1-a/tf-instance-2
+terraform import module.instances.google_compute_instance.tf-instance-1 <project_id>/us-central1-a/tf-instance-1
+terraform import module.instances.google_compute_instance.tf-instance-1 <project_id>/us-central1-a/tf-instance-2
 terraform plan
 terraform apply
 ```
@@ -20,7 +20,7 @@ module "storage" {
 Fill storage/storage.tf
 ```
 resource "google_storage_bucket" "storage" {
-  name          = "qwiklabs-gcp-01-ffdae0e6175c"
+  name          = "<project_id>"
   location      = "US"
   force_destroy = true
   uniform_bucket_level_access = true
@@ -35,7 +35,7 @@ Add remote backend in main.tf
 ```
 terraform {
 backend "gcs" {
-    bucket  = "qwiklabs-gcp-01-ffdae0e6175c"
+    bucket  = "<project_id>"
     prefix  = "terraform/state"
     }
 ....
@@ -111,4 +111,23 @@ allow_stopping_for_update = true
 Apply changes
 ```
 terraform apply
+```
+## Task 6 - Registry
+```
+
+```
+## Task 7 - Firewall
+add following line in main.tf
+```
+...
+resource "google_compute_firewall" "tf-firewall" {
+  name    = "tf-firewall"
+ network = "projects/<project_id>/global/networks/terraform-vpc"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
 ```
