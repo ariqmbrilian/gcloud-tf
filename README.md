@@ -56,6 +56,8 @@ Add following line
 resource "google_compute_instance" "tf-instance-3" {
   name         = "tf-instance-3"
   machine_type = "n1-standard-2"
+  zone         = var.zone
+  allow_stopping_for_update = true
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-10"
@@ -66,10 +68,6 @@ resource "google_compute_instance" "tf-instance-3" {
     access_config {
     }
   }
-  metadata_startup_script = <<-EOT
-        #!/bin/bash
-    EOT
-allow_stopping_for_update = true
 }
 ```
 Apply
@@ -101,10 +99,6 @@ resource "google_compute_instance" "tf-instance-3" {
     access_config {
     }
   }
-  metadata_startup_script = <<-EOT
-        #!/bin/bash
-    EOT
-allow_stopping_for_update = true
 }
 
 ```
