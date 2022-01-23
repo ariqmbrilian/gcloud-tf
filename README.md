@@ -6,7 +6,7 @@ terraform init
 ## Task 2 - Import terraform
 ```
 terraform import module.instances.google_compute_instance.tf-instance-1 <project_id>/us-central1-a/tf-instance-1
-terraform import module.instances.google_compute_instance.tf-instance-1 <project_id>/us-central1-a/tf-instance-2
+terraform import module.instances.google_compute_instance.tf-instance-2 <project_id>/us-central1-a/tf-instance-2
 terraform plan
 terraform apply
 ```
